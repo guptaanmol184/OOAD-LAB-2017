@@ -19,7 +19,7 @@ int main()
 {
 	cout<<"Planar graphs with "<<VERTEX_COUNT<<" vertices"<<endl<<endl;
 	char ch;
-	string filename="planar_conn_"+to_string(VERTEX_COUNT)+".txt";
+	string filename="../../extra_stuff/graphs_file_read/planar_conn_"+to_string(VERTEX_COUNT)+".txt";
 	
 	ifstream file;
 	file.open(filename,ios::in);
