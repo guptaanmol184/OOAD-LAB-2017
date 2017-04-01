@@ -34,6 +34,7 @@ int main(int argc, char const *argv[])
 			cin>>no_weights;
 
 			int weight[no_weights+1];
+			cout<<"enter weight:  ";
 			weight[0]=0;
 			for(i=1;i<=no_weights;i++)
 				cin>>weight[i];
@@ -61,6 +62,7 @@ int main(int argc, char const *argv[])
 			cin>>no_weights;
 
 			float weight[no_weights+1];
+			cout<<"enter weight:  ";
 			weight[0]=0;
 			for(i=1;i<=no_weights;i++)
 				cin>>weight[i];
@@ -88,6 +90,7 @@ int main(int argc, char const *argv[])
 			cin>>no_weights;
 
 			int weight[no_weights];
+			cout<<"enter weight:  ";
 			for(i=0;i<no_weights;i++)
 				cin>>weight[i];
 
@@ -96,6 +99,7 @@ int main(int argc, char const *argv[])
 			cin>>W;
 
 			knapsack(W,weight,no_weights);
+			break;
 		}
 			
 		case '4':
@@ -179,7 +183,7 @@ void knapsack(int W,int *weight,int *profit,int n)
 		else
 		{
 			profit_array[i]=1;
-			w=w-profit[i];
+			w=w-weight[i];
 		}
 	}
 
