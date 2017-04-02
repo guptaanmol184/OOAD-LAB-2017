@@ -5,46 +5,73 @@ using namespace std;
 
 main()
 {
-	int size,i;
+	int size,i,choice;
 	cout<<"Enter size of array"<<endl;
 	cin>>size;
 
-	/*Finding Min and Max in Integer array --start*/
-	int arrayInt[size];
-	cout<<"\nInput "<<size<<" integers"<<endl;
-	for(i=0;i<size;++i)
-		cin>>arrayInt[i];
+	cout<<"\nEnter your DATATYPE choice"<<endl;
+	cout<<"1. Integers"<<endl;
+	cout<<"2. Floating point"<<endl;
+	cout<<"3. Characters"<<endl;
 
-	int *minAndMaxInt=minMax(arrayInt,size);
-	cout<<"Min = "<<minAndMaxInt[0]<<endl;
-	cout<<"Max = "<<minAndMaxInt[1]<<endl;
+	cin>>choice;
 
-	/*Finding Min and Max in Integer array --end*/
+	switch(choice)
+	{
+		case 1:
+		{
+			/*Finding Min and Max in Integer array --start*/
+			int array[size];
 
+			cout<<"\nENTER "<<size<<" INTEGERS"<<endl;
+			for(i=0;i<size;++i)
+				cin>>array[i];
 
-	/*Finding Min and Max in Character array --start*/
-	char arrayChar[size];
-	cout<<"\nInput "<<size<<" characters"<<endl;
-	for(i=0;i<size;++i)
-		cin>>arrayChar[i];
+			int *minAndMax=minMax(array,size);
+			cout<<"Min = "<<minAndMax[0]<<endl;
+			cout<<"Max = "<<minAndMax[1]<<endl;
 
-	char *minAndMaxChar=minMax(arrayChar,size);
-	cout<<"Min = "<<minAndMaxChar[0]<<endl;
-	cout<<"Max = "<<minAndMaxChar[1]<<endl;
+			/*Finding Min and Max in Integer array --end*/
+		}
+			
+		break;
 
-	/*Finding Min and Max in Character array --end*/
+		case 2:
+		{
+			/*Finding Min and Max in Float array --start*/
+			float array[size];
 
+			cout<<"\nENTER "<<size<<" FLOATING POINT NUMBERS"<<endl;
+			for(i=0;i<size;++i)
+				cin>>array[i];
 
-	/*Finding Min and Max in Float array --start*/
-	float arrayFloat[size];
-	cout<<"\nInput "<<size<<" floating point numbers"<<endl;
-	for(i=0;i<size;++i)
-		cin>>arrayFloat[i];
+			float *minAndMax=minMax(array,size);
+			cout<<"Min = "<<minAndMax[0]<<endl;
+			cout<<"Max = "<<minAndMax[1]<<endl;
 
-	float *minAndMaxFloat=minMax(arrayFloat,size);
-	cout<<"Min = "<<minAndMaxFloat[0]<<endl;
-	cout<<"Max = "<<minAndMaxFloat[1]<<endl;
+			/*Finding Min and Max in Integer array --end*/
+			
+		}
+			
+		break;
 
-	/*Finding Min and Max in Integer array --end*/
+		case 3:
+		{
+			/*Finding Min and Max in Character array --start*/
+			char array[size];
+
+			cout<<"\nENTER "<<size<<" CHARACTERS"<<endl;
+			for(i=0;i<size;++i)
+				cin>>array[i];
+
+			char *minAndMax=minMax(array,size);
+			cout<<"Min = "<<minAndMax[0]<<endl;
+			cout<<"Max = "<<minAndMax[1]<<endl;
+
+			/*Finding Min and Max in Character array --end*/
+		}
+			
+		break;
+	}
 
 }

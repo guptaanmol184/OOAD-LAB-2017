@@ -1,137 +1,9 @@
 #include <iostream>
-#include <algorithm>
-#include <string>
 using namespace std;
 
-// 1 & 2
-int max(int a,int b);
-float max(float a,float b);
-void knapsack(int W,int *weight,int *profit,int n);
-void knapsack(float W,float *weight,float *profit,int n);
+#include <algorithm>
+#include <string>
 
-// 3
-void knapsack(int W, int weight[], int no_weights);
-
-// 4
-void knapsack(int w, int weight[], int profit[], int no_weights, bool flag);
-int max_index(float a[], int start, int end);
-template <typename T> void print_array(T a[],int size);
-template <typename T> void swap(T arr[], int index1, int index2);
-
-int main(int argc, char const *argv[])
-{
-	char choice=argv[1][0];
-	
-	switch( choice )
-	{
-		case '1':
-		{
-			cout<<"Your choice is INT I/O knap!"<<endl;
-
-			int no_weights,i;
-
-			cout<<"enter no_weights: ";
-			cin>>no_weights;
-
-			int weight[no_weights+1];
-			cout<<"enter weight:  ";
-			weight[0]=0;
-			for(i=1;i<=no_weights;i++)
-				cin>>weight[i];
-
-			cout<<"enter profit:  ";
-			int profit[no_weights+1];
-			profit[0]=0;
-			for(int i=1;i<=no_weights;i++)
-				cin>>profit[i];
-
-			int W;
-			cout<<"enter max weight for the knapsack: ";
-			cin>>W;
-
-			knapsack(W,weight,profit,no_weights);
-			break;
-		}
-		case '2':
-		{
-			cout<<"Your choice is FLOAT I/O knap!"<<endl;
-
-			int no_weights,i;
-
-			cout<<"enter no_weights: ";
-			cin>>no_weights;
-
-			float weight[no_weights+1];
-			cout<<"enter weight:  ";
-			weight[0]=0;
-			for(i=1;i<=no_weights;i++)
-				cin>>weight[i];
-
-			cout<<"enter profit:  ";
-			float profit[no_weights+1];
-			profit[0]=0;
-			for(int i=1;i<=no_weights;i++)
-				cin>>profit[i];
-
-			float W;
-			cout<<"enter max weight for the knapsack: ";
-			cin>>W;
-
-			knapsack(W,weight,profit,no_weights);
-			break;
-		}
-		case '3':
-		{
-			cout<<"Your choice is container loading!"<<endl;
-
-			int no_weights,i;
-
-			cout<<"enter no_weights: ";
-			cin>>no_weights;
-
-			int weight[no_weights];
-			cout<<"enter weight:  ";
-			for(i=0;i<no_weights;i++)
-				cin>>weight[i];
-
-			int W;
-			cout<<"enter max weight for the knapsack: ";
-			cin>>W;
-
-			knapsack(W,weight,no_weights);
-			break;
-		}
-			
-		case '4':
-		{
-			cout<<"Your choice is fractional knapsack!"<<endl;
-			int no_weights;
-			cout<<"enter the number of weights: ";
-			cin>>no_weights;
-
-			cout<<"enter weights: ";
-			int weight[no_weights];
-			for(int i=0;i<no_weights;i++)
-				cin>>weight[i];
-
-			cout<<"enter profit:  ";
-			int profit[no_weights];
-			for(int i=0;i<no_weights;i++)
-				cin>>profit[i];
-			
-			int w;
-			cout<<"enter knapsack limit: ";
-			cin>>w;
-
-			knapsack(w,weight,profit,no_weights,true);
-			break;
-		}
-		default:
-			cout<<"select a proper choice."<<endl;
-	}
-
-	return 0;
-}
 
 // 1 & 2
 int max(int a,int b)
@@ -263,7 +135,7 @@ void knapsack(int W, int weight[], int no_weights)
 	/*weight_sum=weight[0];
 	*/
 	int i=0;
-	while(weight_sum<=W)
+	while((weight_sum<=W)&&(ctr<no_weights))
 	{
 		cout<<weight[i]<<" ";
 		i++;
@@ -285,12 +157,12 @@ void knapsack(int w, int weight[], int profit[], int no_weights, bool flag)
 	for(int i=0;i<size;i++)
 		p_w[i]=(float)profit[i]/(float)weight[i];
 
-	cout<<"w  :";
+	/*cout<<"w  :";
 	print_array(weight,size);
 	cout<<"p  :";
 	print_array(profit,size);
 	cout<<"p_w:";
-	print_array(p_w,size);
+	print_array(p_w,size);*/
 
 	//sort
 	int k=0;
@@ -305,12 +177,12 @@ void knapsack(int w, int weight[], int profit[], int no_weights, bool flag)
 		//swap for weight
 		swap(p_w,k,index);
 
-		cout<<"w  :";
+		/*cout<<"w  :";
 		print_array(weight,size);
 		cout<<"p  :";
 		print_array(profit,size);
 		cout<<"p_w:";
-		print_array(p_w,size);
+		print_array(p_w,size);*/
 
 	}
 
@@ -321,8 +193,9 @@ void knapsack(int w, int weight[], int profit[], int no_weights, bool flag)
 	/*weight_sum=weight[0];
 	*/
 	int i=0,ctr=0;
+	float fraction=0.0;
 	float total_profit=0;
-	while(weight_sum<=w)
+	while((weight_sum<=w)&&(ctr<no_weights))
 	{
 		cout<<weight[i]<<" ";
 		total_profit+=profit[i];
@@ -330,18 +203,23 @@ void knapsack(int w, int weight[], int profit[], int no_weights, bool flag)
 		ctr++;
 		weight_sum+=weight[i];	
 	}
-	if(w-weight_sum!=0)
+
+	if((w-weight_sum!=0)&&(ctr<no_weights))
 	{
-		ctr++;
-		float fraction;
+		//ctr++;
 		fraction=(float)(weight_sum-w)/(float)weight[i];
 		fraction=1-fraction;
 		//cout<<"fraction: "<<fraction<<endl;
 		cout<<weight[i];
 		total_profit+=(float)fraction*(float)profit[i];
 	}
-	cout<<endl<<"Total number of weights inclucded: "<<ctr<<endl;
-	cout<<endl<<"Total profit: "<<total_profit<<endl;
+
+	cout<<endl<<"Total number of weights included: "<<ctr;
+	if(fraction!=0.0)
+		cout<<"+"<<fraction;
+	cout<<endl;
+
+	cout<<"Total profit: "<<total_profit<<endl;
 
 
 
