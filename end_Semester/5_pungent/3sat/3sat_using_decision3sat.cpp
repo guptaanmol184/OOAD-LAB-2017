@@ -3,6 +3,8 @@
 #include <algorithm>
 using namespace std;
 
+#include <stdio.h>
+
 // typedef vector of vectors
 typedef vector< vector<int> > matrix;
 
@@ -45,30 +47,15 @@ int main(void)
 	}*/
 
 
-	//// ---------- MAIN DECESION PART ----------
+	//// ---------- MAIN DECESION PART ( DECCESION 3 SAT )----------
 	// generate truth values and find weather any exist
 	int soln=0;
 
 	int n=var_count;
 
-	//int graph[k];
 	int vertex[n+1]={0};
 
 	vertex[n+1-1]=1;
-
-	/*int i;
-	for (i = 0; i < k; ++i)
-	{
-		scanf("%1d",&graph[i]);
-	}
-
-	for (i = 0; i < k; ++i)
-	{
-		printf("%d ",graph[i]);
-	}
-	printf("\n");*/
-
-	//graph_to_adj(graph,adj,n);
 
 	for (int i = 1; i < n+1; ++i)
 	{
@@ -94,16 +81,66 @@ int main(void)
 	{
 		for (int i = 1; i < n+1; ++i)
 		{
-			printf("%d:%d ",i,vertex[i]);		
+			printf("%d ",vertex[i]);		
 		}
 		printf("\n");
+		cout<<"truth assignment exists"<<endl;
 		
 	}
 	else
-	cout<<"no truth assignment exists"<<endl;
+	{
+		cout<<"no truth assignment exists"<<endl;
+		exit(0);	
+	}
+	
+	// -------------- FINDING SOLUTION USING DECESION 3 SAT AS BB ------------
+	// initialie vectex array as 0 again
+	for(int i=0;i<n+1;i++)
+		vertex[i]=0;
 
+	// change values of variables and check
+	for(int k=1;k<n+1;k++)
+	{
+		// assume xi to be 1 and check if truth assignment exists
+		vertex[k]=1;
+		// assume soln does not exist
+		soln=0;
 
+		// check truth assignment
+		for (int i = 1; i < n+1; ++i)
+		{
+			do{
+				if(is_truth_assignment(vertex,clauses,var_count))
+				{
+					soln=1; // solution exists
+					/*for(int l=1;l<n+1;++l)
+						printf("%d ",vertex[l] );
+					printf("\n");*/
+					break;
+				}
 
+			  }while(next_permutation(vertex+1+k,vertex+n+1));  // pass only part of array that needs to be permuted
+
+			if(soln==1)
+				break;	
+
+			vertex[(n+1)-i-1]=1;				
+		}
+
+		if(soln!=1)
+			vertex[k]=0;
+		// else 
+			// our assumption is true
+
+	}
+
+	// print solutin using decesion 3 sat
+	cout<<"decision 3 sat solution: "<<endl;
+	for (int i = 1; i < n+1; ++i)
+	{
+		printf("%d:%d ",i,vertex[i]);		
+	}
+	printf("\n");
 
 }
 
@@ -157,35 +194,4 @@ int is_truth_assignment(int *vertex,matrix clauses,int var_count)
 	}
 
 	return flag;
-
-
-
-
-
-
-
-	/*int k=n*n;
-	int ctr=0;
-	int graph_cp[k];
-
-	int i,j;
-	for (i = 0; i < k; ++i)		//duplicate graph
-	{
-		graph_cp[i]=graph[i];
-	}
-
-
-	for (i = 0; i < n; ++i)			//vertex include list..
-	{
-	  		if(vertex[i]==1)
-			{		
-				row_zero(graph_cp,i,n);
-			}
-	}
-		
-	if(is_zero(graph_cp,n))
-		return(1);
-
-	else 
-		return(0);*/
 }
