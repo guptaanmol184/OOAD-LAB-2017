@@ -1,0 +1,34 @@
+Group Assignment  (group size: max 3)
+Due: 27/Jan
+
+1. (Ladder Climbing)  A monkey is asked to climb a ladder having 'n' steps.   Each time monkey can take either one step or two steps.  For example to climb  a ladder of 4 steps, the possibilities are (2,2) (1,1,1,1),(1,2,1),(2,1,1),(1,1,2).   Write a C++ program that prints all possible ways of climbing a ladder of 'n' steps for any given 'n'.   Also, print the count.  Must use class, objects, constructors.
+
+Read IEEE coding style:  must use indentation, have meaningful names for variables instead of 'temp', 'dummy', etc.
+
+
+2.  (Existential proof vs constructive argument - Ramsey's magic)  In any group of 7 people, there exists 3 mutual enemies or 3 mutual friends.  As a programmer, how do you verify this claim.  Exhibit c++ code respecting coding guidelines.
+
+3.  (How large is very large - Golbach's Conjecture) Every even integer (n \geq 4) can be expressed as a sum of two primes.  What is the largest integer for which the conjecture is true.  As a programmer, how do you answer this question.   Exhibit c++ code respecting coding guidelines.
+
+--------
+
+Lab 1 :  Those who have submitted the code online but pending evaluation may meet the TAs today, 5.30 to 6.30 pm, H209.
+
+Dhanalakshmi:  COE students,  
+Renjith: CED students
+
+All must submit the code online for plagiarism check.
+
+Lab 2: Evaluation tomorrow.
+
+Dhanalakshmi:  COE students
+
+Renjith: CED students
+
+Late submission:  Until saturday 5 pm.
+
+All are advised to submit the code online for plagiarism check.
+
+Be honest and give your best.  Every effort of yours will be rewarded.
+
+thanks
