@@ -26,9 +26,9 @@ class DFS
 	public:
 	int n;
 	int edge;	
-	int graph[5][5]={{0}};
-	struct dfs_ver v[5];
-	struct ver vert[5];
+	int graph[100][100]={{0}};
+	struct dfs_ver v[100];
+	struct ver vert[100];
 	struct edge e;
 	vector<int> art;
 	vector<struct edge> edg;
@@ -36,7 +36,7 @@ class DFS
 	int root;
 
 	public:	
-	void dfs(int start,int graph[][5]);
+	void dfs(int start,int graph[][100]);
 	void assign_L();	
 	int L_val_child(int ver);
 	int dfn_bk(int ver);			//dfs no of the backedges to a vertex
@@ -153,7 +153,7 @@ int main(void)
 }
 
 
-void DFS::dfs(int start,int graph[][5])
+void DFS::dfs(int start,int graph[][100])
 {
 	stack<int> s;
 	int ver;
@@ -246,8 +246,8 @@ int DFS::L_val_child(int ver)
 
 void DFS::art_points()
 {
-	int deg;
-	for (int i = 0; i < n; ++i)
+	int deg=0;
+/*	for (int i = 0; i < n; ++i)
 	{
 		if(graph[root][i]==1)
 			++deg;
@@ -257,7 +257,20 @@ void DFS::art_points()
 			art.push_back(root);
 			break;
 		}
+	}*/
+	for (int i = 0; i < n; ++i)
+	{	
+		if(vert[i].pred==root)
+			++deg;
+
+		if(deg>1)
+		{
+			art.push_back(root);
+			break;	
+		}	
 	}
+
+
 
 	for (int i = 0; i < n; ++i)
 	{	
@@ -287,7 +300,7 @@ void DFS::bridges()
 void DFS::biconn_com()
 {	
 	vector<int> com;
-	int graph_cp[5][5];
+	int graph_cp[100][100];
 	int k=0,inc=0,p,q;
 	int visit[n]={-1};
 
